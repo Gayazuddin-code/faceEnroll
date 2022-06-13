@@ -2,6 +2,7 @@ from flask import Flask, render_template, Response, request, redirect
 import cv2
 import os
 import mysql.connector
+import psycopg2
 
 mydb = mysql.connector.connect(
     host="localhost",
