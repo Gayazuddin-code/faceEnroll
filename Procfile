@@ -1,1 +1,1 @@
-web: gunicorn wsgo:app
+web: gunicorn wsgi:app
