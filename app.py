@@ -4,12 +4,22 @@ import os
 import mysql.connector
 
 mydb = mysql.connector.connect(
-    host="remotemysql.com",
-    port=3306,
-    user="qT9Qw34w5T",
-    password="sSsQzyM57n",
-    database="qT9Qw34w5T"
+    host="gayazuddin.mysql.pythonanywhere-services.com",
+    user="gayazuddin",
+    password="Gayaz12377",
+    database="gayazuddin$attendance"
 )
+
+
+# mydb = mysql.connector.connect(
+#     host="remotemysql.com",
+#     port=3306,
+#     user="qT9Qw34w5T",
+#     password="sSsQzyM57n",
+#     database="qT9Qw34w5T"
+# )
+
+
 
 print(mydb)
 
