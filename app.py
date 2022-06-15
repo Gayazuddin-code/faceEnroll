@@ -2,11 +2,10 @@ from flask import Flask, render_template, Response, request, redirect
 import cv2
 import os
 import mysql.connector
-import psycopg2
 
 mydb = mysql.connector.connect(
     host="remotemysql.com",
-    port="3306",
+    port=3306,
     user="qT9Qw34w5T",
     password="sSsQzyM57n",
     database="qT9Qw34w5T"
@@ -155,7 +154,7 @@ def tasks():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
 
 camera.release()
 cv2.destroyAllWindows()
