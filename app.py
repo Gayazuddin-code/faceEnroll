@@ -5,13 +5,16 @@ import mysql.connector
 import psycopg2
 
 mydb = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="",
-    database="attendance"
+    host="remotemysql.com",
+    port="3306",
+    user="qT9Qw34w5T",
+    password="sSsQzyM57n",
+    database="qT9Qw34w5T"
 )
 
 print(mydb)
+
+print("Connected to:", mydb.get_server_info())
 
 mycursor = mydb.cursor()
 
