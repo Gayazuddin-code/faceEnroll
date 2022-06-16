@@ -38,7 +38,7 @@ capture = 0
 switch = 1
 
 # instantiate flask app
-app = Flask(__name__, template_folder='./templates')
+app = Flask(__name__)
 camera = cv2.VideoCapture(0)
 
 
@@ -165,30 +165,9 @@ def tasks():
 #     app.run(debug=False)
 
 
-# define Flask app
-def create_app():
-    try:
-
-        app = Flask(__name__)
-
-        print('Starting up..')
-
-        return app
-
-    except Exception as e:
-        print(e)
-
-
-# retrieve port
-def get_port():
-    return int(os.environ.get("PORT", 5000))
-
-
 # start Flask app
 if __name__ == '__main__':
-    app = create_app()
-    app.run(debug=False, port=get_port(), host='0.0.0.0')
-
+    app.run(debug=False, host='0.0.0.0')
 
 camera.release()
 cv2.destroyAllWindows()
