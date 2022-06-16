@@ -1,1 +1,1 @@
-web: gunicorn wsgo:app
+web: waitress-serve --port=$PORT --call 'app:app'

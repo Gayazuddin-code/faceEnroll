@@ -19,8 +19,6 @@ mydb = mysql.connector.connect(
     database="qT9Qw34w5T"
 )
 
-
-
 print(mydb)
 
 print("Connected to:", mydb.get_server_info())
@@ -163,8 +161,34 @@ def tasks():
     return render_template('camera.html')
 
 
+# if __name__ == '__main__':
+#     app.run(debug=False)
+
+
+# define Flask app
+def create_app():
+    try:
+
+        app = Flask(__name__)
+
+        print('Starting up..')
+
+        return app
+
+    except Exception as e:
+        print(e)
+
+
+# retrieve port
+def get_port():
+    return int(os.environ.get("PORT", 5000))
+
+
+# start Flask app
 if __name__ == '__main__':
-    app.run(debug=False)
+    app = create_app()
+    app.run(debug=False, port=get_port(), host='0.0.0.0')
+
 
 camera.release()
 cv2.destroyAllWindows()
