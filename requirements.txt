@@ -16,3 +16,4 @@ Pillow==9.1.1
 protobuf==4.21.1
 waitress==2.1.2
 Werkzeug==2.1.2
+opencv-python-headless==4.2.0.32
