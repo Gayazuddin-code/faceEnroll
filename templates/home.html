@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attendance System</title>
+
+</head>
+<style>
+body {background-color: powderblue; text-align:center; padding-top:250px;}
+a {font-family: Times new roman;}
+a:link, a:visited {
+  background-color: #f44336;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: red;
+}
+</style>
+<body style="text-align:center">
+<h1>Student face identification and <br> attendance management system <br> using CNN.</h1> <br><br>
+<a href="{{ url_for('login') }}">Student</a>
+<a href="{{ url_for('teacherLogin') }}">Teacher</a>
+</body>
+</html>

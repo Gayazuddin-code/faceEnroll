@@ -13,7 +13,7 @@ def user():
         images.append(curImg)
         classNames.append(os.path.splitext(cl)[0])
     encoded_list = findEncodings(images)
-    print("encoding completed whit sucess")
+    print("encoding completed whit success")
     # print(encoded_list)
     return encoded_list[0]
 

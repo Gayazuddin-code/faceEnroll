@@ -7,17 +7,17 @@
     <title>student register page.</title>
 </head>
 <body style="text-align:center">
-    <h1>Student Registration.</h1>
+    <h1>Faculty Registration.</h1>
 
 
 
 
-    <form method="post" action="{{ url_for('register') }}">
+    <form method="post" action="{{ url_for('teacherRegister') }}">
         <label for="name">Name:</label><br>
         <input type="text" name="name"><br><br>
 
-        <label for="usn">USN Number:</label><br>
-        <input type="text" name="usn"><br><br>
+        <label for="id">ID Number:</label><br>
+        <input type="text" name="id"><br><br>
 
         <label for="email">Email:</label><br>
         <input type="email" name="email"><br><br>
@@ -28,7 +28,7 @@
         <label for="conform password">Conform Password:</label><br>
         <input type="password" name="conform_password"><br><br>
 
-        <input type="submit" name="photo" value="Take Photo">
+        <input type="submit" name="SubmitTeacher" value="Submit">
 
 
     </form>

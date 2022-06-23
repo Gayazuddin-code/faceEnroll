@@ -72,16 +72,93 @@ def gen_frames():  # generate frame by frame from camera
 
 
 @app.route('/')
+@app.route('/home')
+def home():
+    return render_template('home.html')
+
+
+@app.route('/teacherLogin', methods=['POST', "GET"])
+def teacherLogin():
+    if request.method == 'POST':
+        if request.form.get('register'):
+            return redirect('teacherRegister')
+
+        elif request.form.get('login'):
+            login_details = dict()
+            login_id = request.form.get('id')
+            login_password = request.form.get('password')
+            print(login_id, login_password)
+
+            sql = "SELECT teacher_id FROM teacher"
+            mycursor.execute(sql)
+            id_list = []
+            result = mycursor.fetchall()
+            for x in result:
+                id_list.append(x[0])
+            print(id_list)
+
+            sql = "SELECT password FROM teacher"
+            mycursor.execute(sql)
+            password_list = []
+            result = mycursor.fetchall()
+            for x in result:
+                password_list.append(x[0])
+            print(password_list)
+
+            for i in range(len(id_list)):
+                login_details[id_list[i]] = password_list[i]
+
+            print(login_details)
+
+            for key, vlaue in login_details.items():
+                print(key, vlaue)
+
+            while True:
+                if login_id in id_list and login_password in password_list:
+                    if login_details[login_id] == login_password:
+                        sql = "select * from student"
+                        mycursor.execute(sql)
+                        data = mycursor.fetchall()
+                        print(data)
+                        return render_template('table.html', value=data)
+                else:
+                    continue
+    return render_template(('TeacherLogin.html'))
+
+
+@app.route('/teacherRegister', methods=['POST', 'GET'])
+def teacherRegister():
+    if request.form.get('SubmitTeacher'):
+        if request.method == 'POST':
+            global name, id, email, password
+            if request.form.get('SubmitTeacher'):
+                name = request.form.get('name')
+                id = request.form.get('id')
+                email = request.form.get('email')
+                password = request.form.get('password')
+                while True:
+                    conform_password = request.form.get('conform_password')
+                    if conform_password == password:
+                        sql = "INSERT INTO teacher (teacher_id, name, email, password) VALUES (%s, %s, %s, %s)"
+                        val = (id, name, email, password)
+                        mycursor.execute(sql, val)
+                        mydb.commit()
+                        print(mycursor.rowcount, "record inserted.")
+        return render_template('TeacherLogin.html')
+    return render_template('TeacherRegister.html')
+
+
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
         if request.form.get('register'):
             return redirect('register')
+
         elif request.form.get('login'):
             login_details = dict()
-
             login_usn = request.form.get('usn')
             login_password = request.form.get('password')
+            print(login_usn, login_password)
 
             sql = "SELECT usn FROM student"
             mycursor.execute(sql)
@@ -89,6 +166,7 @@ def login():
             result = mycursor.fetchall()
             for x in result:
                 usn_list.append(x[0])
+            print(usn_list)
 
             sql = "SELECT password FROM student"
             mycursor.execute(sql)
@@ -96,17 +174,25 @@ def login():
             result = mycursor.fetchall()
             for x in result:
                 password_list.append(x[0])
+            print(password_list)
 
             for i in range(len(usn_list)):
                 login_details[usn_list[i]] = password_list[i]
+
+            print(login_details)
 
             for key, vlaue in login_details.items():
                 print(key, vlaue)
 
             while True:
                 if login_usn in usn_list and login_password in password_list:
+                    print(login_usn)
                     if login_details[login_usn] == login_password:
-                        return "<h1>login scuessfull</h1>"
+                        sql = f"select * from student where usn = '{login_usn}'"
+                        mycursor.execute(sql)
+                        data = mycursor.fetchall()
+                        print(data)
+                        return render_template('table.html', value=data)
                 else:
                     continue
     return render_template('student_login.html')
@@ -167,7 +253,7 @@ def tasks():
 
 # start Flask app
 if __name__ == '__main__':
-    app.run(debug=False, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0')
 
 camera.release()
 cv2.destroyAllWindows()

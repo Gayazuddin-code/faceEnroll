@@ -7,16 +7,16 @@
     <title>Student Login</title>
 </head>
 <body style="text-align:center">
-    <h1>Student Login.</h1>
-        <form method="post" action="{{ url_for('login') }}">
+    <h1>Faculty Login</h1>
+        <form method="post" action="{{ url_for('teacherLogin') }}">
 
-            <label for="usn">USN Number</label><br>
-            <input type="text" name="usn" id=""><br><br>
+            <label for="id">ID Number</label><br>
+            <input type="text" name="id" id=""><br><br>
 
             <label for="password">Password</label><br>
             <input type="password" name="password"><br><br>
-            
-            <input type="submit" name="login" value="Submit">
+
+            <input type="submit" name="login" value="Login">
             <input type="submit" name="register" value="Register">
         </form>
 </body>
